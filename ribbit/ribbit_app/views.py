@@ -1,3 +1,5 @@
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
@@ -39,6 +41,39 @@ def index(request, auth_form=None, user_form=None):
         return render(request,
                       'home.html',
                       {'auth_form': auth_form, 'user_form': user_form, })
+
+    bookpasser.objects.all().delete()
+
+@csrf_exempt
+@require_POST
+def newindex(request, auth_form=None, user_form=None):
+    # # User is logged in
+    # if request.user.is_authenticated():
+    #     bookPasser_form = bookPasserForm()
+    #     user = request.user
+    #     bookPassers_self = bookPasser.objects.filter(user=user.id)
+    #     bookPassers_buddies = bookPasser.objects.filter(user__userprofile__in=user.profile.follows.all)
+    #     bookPassers = bookPassers_self | bookPassers_buddies
+ 
+    #     return render(request,
+    #                   'buddies.html',
+    #                   {'bookPasser_form': bookPasser_form, 'user': user,
+    #                    'bookPassers': bookPassers,
+    #                    'next_url': '/', })
+    # else:
+    #     # User is not logged in
+    #     auth_form = auth_form or AuthenticateForm()
+    #     user_form = user_form or UserCreateForm()
+ 
+    #     return render(request,
+    #                   'home.html',
+    #                   {'auth_form': auth_form, 'user_form': user_form, })
+
+    # bookpasser.objects.all().delete()
+    brand = request.POST['brand']
+    product = request.POST['product']
+    print brand
+    print prodcut    
 
 def login_view(request):
     if request.method == 'POST':
