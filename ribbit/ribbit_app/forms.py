@@ -48,7 +48,7 @@ class bookPasserForm(forms.ModelForm):
  
     class Meta:
         model = bookPasser
-        exclude = ('user',)   
+        exclude = ('user','message','email')   
 
 class PayForm(forms.Form):
     # subject = forms.CharField(max_length=100)

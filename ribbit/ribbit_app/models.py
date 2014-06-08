@@ -12,8 +12,8 @@ import hashlib
 
 
 class bookPasser(models.Model):
-    content = models.CharField(max_length=40,blank=True)
-    location = models.CharField(max_length=100,blank=True)
+    brand = models.CharField(max_length=40,blank=True)
+    product = models.CharField(max_length=100,blank=True)
     message = models.CharField(max_length=100,blank=True)
     email = models.CharField(max_length=18,blank=True)
     user = models.ForeignKey(User)
